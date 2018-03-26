@@ -1,0 +1,44 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+
+```{r}
+# Code3.1
+plot(Nile)
+```
+
+```{r}
+# Code3.2
+Ryori <- read.csv("../tsbook-master/CO2.csv")
+y_all <- ts(data=Ryori$CO2, start=c(1987, 1), frequency=12)
+y <- window(y_all, end=c(2014,12))
+plot(y)
+```
+
+```{r}
+# Code3.3
+Nile2 <- ts(Nile, start=1986)
+Nile2 <- 2 * Nile
+ts.plot(cbind(Nile, Nile2), lty=c("solid", "dashed"))
+```
+```{r}
+# Code3.4
+print("start end cycle")
+print(tsp(Nile))
+
+print(time(Nile))
+```
+```{r}
+# Code3.5
+day = as.Date("2000-01-01")
+print(str(day))
+
+days = seq(from=as.Date("2000-01-01"), to=as.Date("2000-01-31"), by="day")
+print(weekdays(days))
+```
+
