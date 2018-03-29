@@ -198,6 +198,65 @@ plot(HW_nonlinear, main = "(a)", col = mygray, col.predicted = "black", lty.pred
 par(oldpar)
 ```
 
+```{r}
+# Code4.7
+# (a)
+HW_OUT <- HW_Nile
+HW_decomp <- ts.union(y = HW_OUT$x,
+                      Level = HW_OUT$fitted[ , "level"],
+                      Resisuals = residuals(HW_OUT))
+plot(HW_decomp, main = "")
+
+# (b)
+HW_OUT <- HW_CO2
+HW_decomp <- ts.union(y = HW_OUT$x,
+                      Level = HW_OUT$fitted[ , "level"],
+                      Season = HW_OUT$fitted[ , "season"],
+                      Resisuals = residuals(HW_OUT))
+plot(HW_decomp, main = "")
+
+# (c)
+HW_OUT <- HW_UKgas_log
+HW_decomp <- ts.union(y = HW_OUT$x,
+                      Level = HW_OUT$fitted[ , "level"],
+                      Season = HW_OUT$fitted[ , "season"],
+                      Resisuals = residuals(HW_OUT))
+plot(HW_decomp, main = "")
+
+# (d)
+HW_OUT <- HW_nonlinear
+HW_decomp <- ts.union(y = HW_OUT$x,
+                      Level = HW_OUT$fitted[ , "level"],
+                      Resisuals = residuals(HW_OUT))
+plot(HW_decomp, main = "")
+
+```
+
+```{r}
+# Code4.8
+HW_predict <- predict(HW_CO2, n.ahead = 12)
+str(HW_predict)
+
+# plot
+plot(HW_CO2, HW_predict, main = "Filtering and predintion with Holt Winters", 
+     col = mygray, col.predicted = "black", lty.predicted = "dashed")
+y_CO2_2015 <- window(y_all, start = 2015)
+lines(y_CO2_2015, col = mygray)
+```
+
+```{r}
+# Code4.9
+oldpar <- par(no.readonly = TRUE)
+par(mfrow = c(2, 2)); par(oma = c(0, 0, 0, 0)); par(mar = c(4, 4, 3, 1))
+
+acf(residuals(HW_Nile), main = "(a)")
+acf(residuals(HW_CO2), main = "(b)")
+acf(residuals(HW_UKgas_log), main = "(c)")
+acf(residuals(HW_nonlinear), main = "(d)")
+
+par(oldpar)
+```
+
 
 
 

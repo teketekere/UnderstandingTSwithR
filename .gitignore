@@ -39,5 +39,6 @@ rsconnect/
 
 # my settings
 /tsbook-master/
+/tsbook-master/*
 /.ipynb_checkpoints/
 .Rproj.user
